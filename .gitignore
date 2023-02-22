@@ -1,0 +1,10 @@
+# ASP.NET Core
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# NuGet
+*.nuget.props
+*.nuget.targets

@@ -1,0 +1,13 @@
+Checklista låtar
+  - Kontroll så artistId existerar - X
+  - Kunna hämta alla låtar från ett specifikt artistId/artist - X (/songsbyartist/{artistId})
+  - Radera rating när en låt raderas -X
+
+Checklista artist
+  - Kontroll så artisten inte redan finns inlagd - X
+
+Checklista rating
+  - Kontroll så SongId existerar - X
+  - Kontroll så rating är mellan 1-10 - X
+  - Kunna hämta alla ratings från ett specifikt SongId - X (ratingsbysong/{songId})
+  - Hämta snittvärde från rating från ett specifikt SongId -X (averagerating/{songId})
