@@ -42,19 +42,20 @@ namespace DT191G_moment4.Controllers
         {
           if (_context.Ratings == null)
           {
-              return NotFound();
+                return NotFound();
           }
             var rating = await _context.Ratings.FindAsync(id);
 
             if (rating == null)
             {
-                return NotFound();
+                var message = new { message = "Rating with rating-id " + id + " doesnt exist"};
+                return NotFound(message);
             }
 
             return rating;
         }
 
-        // GET: api/Song/5
+        // GET: api/ratingsbysong/5
         [HttpGet("ratingsbysong/{songId}")]
         public async Task<ActionResult<List<Rating>>> GetRatingBySong(int songId)
         {
@@ -63,13 +64,14 @@ namespace DT191G_moment4.Controllers
 
             if (ratingsBySong == null || ratingsBySong.Count == 0)
             {
+                var message = new { message = "Ratings with song-id " + songId + " doesnt exist"};
                 return NotFound();
             }
 
             return ratingsBySong;
         }
 
-        // GET: api/Song/5
+        // GET: api/averagerating/5
         [HttpGet("averagerating/{songId}")]
         public async Task<ActionResult<double>> GetAverageRatingBySong(int songId)
         {
@@ -79,7 +81,8 @@ namespace DT191G_moment4.Controllers
             //Return if null
             if (ratingsBySong == null || ratingsBySong.Count == 0)
             {
-                return NotFound();
+                var usermessage = new { message = "Ratings with song-id " + songId + " doesnt exist"};
+                return NotFound(usermessage);
             }
 
             //Store title 
@@ -166,7 +169,8 @@ namespace DT191G_moment4.Controllers
             var rating = await _context.Ratings.FindAsync(id);
             if (rating == null)
             {
-                return NotFound();
+                var usermessage = new { message = "Rating with id " + id + " doesnt exist"};
+                return NotFound(usermessage);
             }
 
             _context.Ratings.Remove(rating);

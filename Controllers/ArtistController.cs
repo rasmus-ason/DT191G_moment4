@@ -45,7 +45,8 @@ namespace DT191G_moment4.Controllers
 
             if (artist == null)
             {
-                return NotFound();
+                var message = new { message = "Artist with id " + id + " doesnt exist"};
+                return NotFound(message);
             }
 
             return artist;
@@ -58,7 +59,8 @@ namespace DT191G_moment4.Controllers
         {
             if (id != artist.ArtistId)
             {
-                return BadRequest();
+                var message = new { message = "Artist with id " + id + " doesnt exist"};
+                return BadRequest(message);
             }
 
             _context.Entry(artist).State = EntityState.Modified;
@@ -118,12 +120,15 @@ namespace DT191G_moment4.Controllers
         {
             if (_context.Artists == null)
             {
+
                 return NotFound();
             }
             var artist = await _context.Artists.FindAsync(id);
+            
             if (artist == null)
             {
-                return NotFound();
+                var message = new { message = "Artist with id " + id + " doesnt exist"};
+                return NotFound(message);
             }
 
             _context.Artists.Remove(artist);

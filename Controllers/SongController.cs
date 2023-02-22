@@ -43,13 +43,14 @@ namespace DT191G_moment4.Controllers
         {
           if (_context.Songs == null)
           {
-              return NotFound();
+            return NotFound();
           }
             var song = await _context.Songs.FindAsync(id);
 
             if (song == null)
             {
-                return NotFound();
+                var usermessage = new { message = "Song with id " + id + " doesnt exist"};
+                return NotFound(usermessage);
             }
 
             return song;
@@ -64,6 +65,7 @@ namespace DT191G_moment4.Controllers
 
             if (songs == null || songs.Count == 0)
             {
+                var usermessage = new { message = "Artist with artist-id " + artistId + " doesnt have any songs in database"};
                 return NotFound();
             }
 
@@ -79,6 +81,7 @@ namespace DT191G_moment4.Controllers
         {
             if (id != song.SongId)
             {
+                var usermessage = new { message = "Song with id " + id + " doesnt exist"};
                 return BadRequest();
             }
 
@@ -140,6 +143,7 @@ namespace DT191G_moment4.Controllers
         {
             if (_context.Songs == null)
             {
+                
                 return NotFound();
             }
 
@@ -148,7 +152,8 @@ namespace DT191G_moment4.Controllers
 
             if (song == null)
             {
-                return NotFound();
+                var usermessage = new { message = "Song with id " + id + " doesnt exist"};
+                return NotFound(usermessage);
             }
 
             //Delete its rating
